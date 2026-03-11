@@ -56,6 +56,7 @@ make docker pythonenv awscli
 | ☁️ **AWS CLI** | Cliente de línea de comandos de AWS | `install_awscli.sh` |
 | 🤖 **Cursor AI** | Editor de código con IA | `install_cursorai.sh` |
 | 🔐 **Pritunl** | Servidor VPN | `install_pritunl.sh` |
+| 🔑 **SSH** | Servidor OpenSSH | `install_ssh.sh` |
 
 ## 🔧 Uso del Makefile
 
@@ -99,6 +100,7 @@ make clean
 | `awscli` | Instala AWS CLI |
 | `cursorai` | Instala Cursor AI |
 | `pritunl` | Instala Pritunl |
+| `ssh` | Instala y habilita SSH |
 | `clean` | Limpia archivos temporales |
 | `check-scripts` | Verifica que todos los scripts existen |
 
@@ -154,6 +156,13 @@ Instala Pritunl para servidor VPN:
 - Instala Pritunl
 - Configura servicios necesarios
 
+### 🔑 SSH (`install_ssh.sh`)
+Instala y habilita OpenSSH Server:
+- Instala el paquete openssh-server
+- Habilita SSH como servicio del sistema (systemctl enable)
+- Inicia el servicio automáticamente
+- Muestra el estado del servicio
+
 ## ⚙️ Requisitos del Sistema
 
 ### Sistema Operativo
@@ -196,6 +205,10 @@ aws --version
 
 # Verificar Cursor AI
 cursor --version
+
+# Verificar SSH
+sudo systemctl status ssh
+ssh -V
 ```
 
 ## 🛠️ Solución de Problemas

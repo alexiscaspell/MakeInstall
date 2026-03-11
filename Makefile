@@ -1,7 +1,7 @@
 # Makefile para instalación de herramientas de desarrollo
 # Uso: make <target>
 
-.PHONY: help install-all docker terragrunt pritunl kubectl pythonenv awscli cursorai terraform clean
+.PHONY: help install-all docker terragrunt pritunl kubectl pythonenv awscli cursorai terraform ssh clean
 
 # Target por defecto - muestra la ayuda
 help:
@@ -18,6 +18,7 @@ help:
 	@echo "  awscli      - Instala AWS CLI"
 	@echo "  cursorai    - Instala Cursor AI"
 	@echo "  terraform   - Instala Terraform"
+	@echo "  ssh         - Instala y habilita SSH"
 	@echo "  clean       - Limpia archivos temporales"
 	@echo ""
 	@echo "Ejemplos:"
@@ -26,7 +27,7 @@ help:
 	@echo "  make pythonenv awscli # Instala Python y AWS CLI"
 
 # Instala todas las herramientas
-install-all: docker terragrunt pritunl kubectl pythonenv awscli cursorai terraform
+install-all: docker terragrunt pritunl kubectl pythonenv awscli cursorai terraform ssh
 	@echo "✅ Todas las herramientas han sido instaladas"
 
 # Instala Docker
@@ -85,6 +86,13 @@ terraform:
 	@./install_terraform.sh
 	@echo "✅ Terraform instalado correctamente"
 
+# Instala y habilita SSH
+ssh:
+	@echo "🔑 Instalando y habilitando SSH..."
+	@chmod +x install_ssh.sh
+	@./install_ssh.sh
+	@echo "✅ SSH instalado y habilitado correctamente"
+
 # Limpia archivos temporales
 clean:
 	@echo "🧹 Limpiando archivos temporales..."
@@ -103,4 +111,5 @@ check-scripts:
 	@test -f install_awscli.sh || (echo "❌ install_awscli.sh no encontrado" && exit 1)
 	@test -f install_cursorai.sh || (echo "❌ install_cursorai.sh no encontrado" && exit 1)
 	@test -f install_terraform.sh || (echo "❌ install_terraform.sh no encontrado" && exit 1)
+	@test -f install_ssh.sh || (echo "❌ install_ssh.sh no encontrado" && exit 1)
 	@echo "✅ Todos los scripts están presentes" 
